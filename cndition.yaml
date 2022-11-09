@@ -1,0 +1,15 @@
+--- # My fist task yaml
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  vars:
+  tasks:
+         - name: insatll apche on debian
+           command: apt-get -y install apache2
+           when: ansible_os_family == "Debian"
+         - name: insatll apche on redhat
+           command: yum -y install httpd
+           when: ansible_os_family == "RedHat"
+
+

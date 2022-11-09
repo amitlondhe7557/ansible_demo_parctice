@@ -1,0 +1,14 @@
+--- # My fist task yaml
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  vars:
+  tasks:
+         - name: add list of user
+           action: user name='{{item}}' state=present
+           with_items:
+                   - ammy
+                   - sonali
+
+

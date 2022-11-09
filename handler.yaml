@@ -1,0 +1,16 @@
+--- # My fist task yaml
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  vars:
+    pkgname: httpd
+  tasks:
+         - name: install httpd on linux
+           action: yum name='{{pkgname}}' state=installed
+           notify: install httpd
+  handlers:
+         - name: install httpd    
+           action: service name='{{pkgname}}' state=restarted
+
+
