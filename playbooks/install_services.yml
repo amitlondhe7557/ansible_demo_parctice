@@ -1,0 +1,22 @@
+---
+  - hosts: loadbalancers
+    become: yes
+    tasks:
+      - name: install apache
+        yum: name=httpd state=present
+      - name: srverice apache
+        service: name=httpd state=restarted enabled=yes
+ 
+  - hosts: webservers
+    become: yes
+    tasks:
+      - name: install apache
+        yum: 
+          name:
+            - httpd
+            - php
+          state: present
+
+      - name: srverice apache
+        service: name=httpd state=restarted enabled=yes
+

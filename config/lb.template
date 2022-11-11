@@ -1,0 +1,16 @@
+ProxyRequests off
+<Proxy balancer://webcluster >
+{% for in groups['webservers'] %}
+	BalancerMember http://{{hostvars[hosts]['ansible_ssh_host']}}
+{% endfor %}
+	ProxySet lbmethod=byrequests
+</proxy>
+
+<Location /balancer-manager>
+ SetHandher balancer-manager
+</Location>
+
+ProxyPass /balancer-manager !
+ProxyPass / balancer://webcluster/
+
+

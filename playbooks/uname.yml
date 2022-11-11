@@ -1,0 +1,6 @@
+---
+  - hosts: webservers:loadbalancers
+    tasks:
+      - name: uname all server 
+        shell: uname 
+ 
